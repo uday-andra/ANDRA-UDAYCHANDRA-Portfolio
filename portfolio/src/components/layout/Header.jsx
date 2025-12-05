@@ -9,6 +9,7 @@ import {
   FaInstagram,
 } from "react-icons/fa";
 import avatarSrc from "../../assets/selfie_Image.jpg";
+import resumePdf from "../../assets/ANDRA-UDAYCHANDRA_Resume.pdf";
 
 export default function Header({ theme, onToggleTheme }) {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -129,7 +130,7 @@ export default function Header({ theme, onToggleTheme }) {
                   <a href="#certifications" className="profile-link">Certifications</a>
                   <a href="#contact" className="profile-link">Contact</a>
                   <a
-                    href="/resume.pdf"
+                    href={resumePdf}
                     className="profile-link"
                     target="_blank"
                     rel="noreferrer"

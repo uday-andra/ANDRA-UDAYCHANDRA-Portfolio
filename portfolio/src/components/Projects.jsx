@@ -7,7 +7,7 @@ const PROJECTS = [
     desc: "Personal portfolio built with React + Vite, responsive layout, contact form connected to Node + MySQL.",
     image: "/src/assets/project1.jpg",
     tools: ["HTML5", "CSS3", "JavaScript", "React", "TailwindCSS", "MySQL"],
-    link: "#",
+    link: "https://github.com/uday-andra/ANDRA-UDAYCHANDRA-Portfolio",
   },
   {
     id: 2,
