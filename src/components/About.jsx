@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from "react";
-import aboutImg from "../assets/selfie_Image.jpg";
+import aboutImg from "../assets/Selfie_Image.jpg";
 
 export default function About() {
   const hexRef = useRef(null);
