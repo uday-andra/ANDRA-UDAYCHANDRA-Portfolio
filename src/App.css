@@ -195,10 +195,11 @@ html, body, #root, #app { height: 100%; font-family: Inter, system-ui, -apple-sy
 .brand:hover .brand-text { transform: translateX(2px); transition: transform 160ms; }
 [data-theme="dark"] .site-header { background: linear-gradient(180deg,#071023,#061522); border-bottom: 1px solid rgba(255,255,255,0.03); }
 
+
 /*--------------------------------------------------- Hero ---------------------------------------------------*/
 .hero-section {
   position: relative;
-  min-height: 100vh;
+  min-height: 50vh;
   padding: 4.5rem 1.5rem 4rem;
   display: flex;
   align-items: center;
