@@ -199,7 +199,7 @@ html, body, #root, #app { height: 100%; font-family: Inter, system-ui, -apple-sy
 /*--------------------------------------------------- Hero ---------------------------------------------------*/
 .hero-section {
   position: relative;
-  min-height: 50vh;
+  /* min-height: 50vh; */
   padding: 4.5rem 1.5rem 4rem;
   display: flex;
   align-items: center;
