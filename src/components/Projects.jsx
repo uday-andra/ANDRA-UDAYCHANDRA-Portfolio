@@ -1,11 +1,16 @@
 import React from "react";
-
+import project1Img from "../assets/project1.jpg";
+import project2Img from "../assets/project2.jpg";
+import project3Img from "../assets/project3.jpg";
+import project4Img from "../assets/project4.jpg";
+import project5Img from "../assets/project5.jpg";
+import project6Img from "../assets/project6.jpg";
 const PROJECTS = [
   {
     id: 1,
     title: "Portfolio Website",
     desc: "Personal portfolio built with React + Vite, responsive layout, contact form connected to Node + MySQL.",
-    image: "/src/assets/project1.jpg",
+    image: project1Img,
     tools: ["HTML5", "CSS3", "JavaScript", "React", "TailwindCSS", "MySQL"],
     link: "https://github.com/uday-andra/ANDRA-UDAYCHANDRA-Portfolio",
   },
@@ -13,7 +18,7 @@ const PROJECTS = [
     id: 2,
     title: "VESTRA FASHIONS-Online cloth store",
     desc: "An online clothing store with user authentication, product catalog, shopping cart, and order management using Java Spring Boot and MySQL.",
-    image: "/src/assets/project2.jpg",
+    image: project2Img,
     tools: ["HTML5", "CSS3", "JavaScript", "React", "TailwindCSS", "Java", "Spring Boot", "MySQL"],
     link: "https://github.com/uday-andra/VESTRA-E-Commerce-Store",
   },
@@ -21,7 +26,7 @@ const PROJECTS = [
     id: 3,
     title: "BANK Management System",
     desc: "A simple banking application with authentication, account management, and transaction history using Spring Boot + MySQL.",
-    image: "/src/assets/project3.jpg",
+    image: project3Img,
     tools: ["HTML5", "CSS3", "JSP", "Java", "Spring Boot", "MySQL"],
     link: "https://github.com/uday-andra/BankApp",
   },
@@ -29,7 +34,7 @@ const PROJECTS = [
     id: 4,
     title: "QR Code Generator",
     desc: "Generate QR codes instantly with download functionality.",
-    image: "/src/assets/project4.jpg",
+    image: project4Img,
     tools: ["HTML5", "CSS3", "JavaScript"],
     link: "https://github.com/uday-andra/QR-Code-Generator",
   },
@@ -37,7 +42,7 @@ const PROJECTS = [
     id: 5,
     title: "Analytics Dashboard",
     desc: "Interactive charts, filters, export functionality, and reusable components.",
-    image: "/src/assets/project5.jpg",
+    image: project5Img,
     tools: ["React", "Recharts", "Vite"],
     link: "#",
   },
@@ -45,7 +50,7 @@ const PROJECTS = [
     id: 6,
     title: "Security Scanner UI",
     desc: "UX demo showing scanning pipeline results and CVE highlights.",
-    image: "/src/assets/project6.jpg",
+    image: project6Img,
     tools: ["React", "Bootstrap", "Node"],
     link: "#",
   },
