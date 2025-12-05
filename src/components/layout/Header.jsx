@@ -8,7 +8,7 @@ import {
   FaEnvelope,
   FaInstagram,
 } from "react-icons/fa";
-import avatarSrc from "../../assets/selfie_Image.jpg";
+import avatarSrc from "../../assets/Selfie_Image.jpg";
 import resumePdf from "../../assets/ANDRA-UDAYCHANDRA_Resume.pdf";
 
 export default function Header({ theme, onToggleTheme }) {

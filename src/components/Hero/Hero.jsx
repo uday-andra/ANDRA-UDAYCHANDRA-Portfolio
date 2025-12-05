@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from "react";
-import avatarSrc from "../../assets/selfie_Image.jpg";
+import avatarSrc from "../../assets/Selfie_Image.jpg";
 import resumePdf from "../../assets/ANDRA-UDAYCHANDRA_Resume.pdf";
 export default function Hero() {
   const cardRef = useRef(null);
