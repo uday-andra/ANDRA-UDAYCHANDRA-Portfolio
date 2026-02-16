@@ -2,6 +2,7 @@
 import React from 'react';
 
 const educationData = [
+
   {
     period: '2021 – 2025',
     title: 'B.Tech in Information Technology',
@@ -27,7 +28,12 @@ const educationData = [
 
 const experienceData = [
   {
-    period: '2025 – Present',
+    period: '2026 – Present',
+    title: 'Software Develepor',
+    place: 'Nimblix Technologies Pvt Ltd',
+  },
+  {
+    period: '2025 – 2025',
     title: 'Java Full-Stack Developer intern',
     place: 'Tech Company',
     description:
