@@ -1,118 +1,421 @@
-import React from "react";
+import React, { useState } from "react";
+
 import project1Img from "../assets/project1.jpg";
 import project2Img from "../assets/project2.jpg";
 import project3Img from "../assets/project3.jpg";
 import project4Img from "../assets/project4.jpg";
 import project5Img from "../assets/project5.jpg";
 import project6Img from "../assets/project6.jpg";
+
+import {
+  FaArrowRight,
+  FaChevronDown,
+  FaGithub,
+  FaExternalLinkAlt,
+  FaCode,
+  FaLayerGroup,
+  FaServer,
+  FaShieldAlt,
+} from "react-icons/fa";
+
+  //  PROJECT DATA
 const PROJECTS = [
   {
     id: 1,
     title: "Portfolio Website",
-    desc: "Personal portfolio built with React + Vite, responsive layout, contact form connected to Node + MySQL.",
+    desc: "Personal portfolio built with React + Vite, responsive layout, and contact form integration with Node.js and MySQL.",
     image: project1Img,
-    tools: ["HTML5", "CSS3", "JavaScript", "React", "TailwindCSS", "MySQL"],
-    link: "https://github.com/uday-andra/ANDRA-UDAYCHANDRA-Portfolio",
+    tools: ["React", "JavaScript", "TailwindCSS", "MySQL"],
+    category: "Frontend / Full Stack",
+    accent: "blue",
+    icon: FaCode,
+    link:
+      "https://github.com/uday-andra/ANDRA-UDAYCHANDRA-Portfolio",
   },
+
   {
     id: 2,
-    title: "VESTRA FASHIONS-Online cloth store",
-    desc: "An online clothing store with user authentication, product catalog, shopping cart, and order management using Java Spring Boot and MySQL.",
+    title: "VESTRA FASHIONS",
+    desc: "An online clothing store with authentication, product catalog, shopping cart, and order management using Java Spring Boot and MySQL.",
     image: project2Img,
-    tools: ["HTML5", "CSS3", "JavaScript", "React", "TailwindCSS", "Java", "Spring Boot", "MySQL"],
-    link: "https://github.com/uday-andra/VESTRA-E-Commerce-Store",
+    tools: [
+      "React",
+      "Java",
+      "Spring Boot",
+      "MySQL",
+      "TailwindCSS",
+    ],
+    category: "Full Stack",
+    accent: "violet",
+    icon: FaLayerGroup,
+    link:
+      "https://github.com/uday-andra/VESTRA-E-Commerce-Store",
   },
+
   {
     id: 3,
-    title: "BANK Management System",
-    desc: "A simple banking application with authentication, account management, and transaction history using Spring Boot + MySQL.",
+    title: "Bank Management System",
+    desc: "A banking application with authentication, account management, transaction processing, and transaction history using Spring Boot and MySQL.",
     image: project3Img,
-    tools: ["HTML5", "CSS3", "JSP", "Java", "Spring Boot", "MySQL"],
-    link: "https://github.com/uday-andra/BankApp",
+    tools: ["JSP", "Java", "Spring Boot", "MySQL"],
+    category: "Backend / Full Stack",
+    accent: "cyan",
+    icon: FaServer,
+    link:
+      "https://github.com/uday-andra/BankApp",
   },
+
   {
     id: 4,
     title: "QR Code Generator",
-    desc: "Generate QR codes instantly with download functionality.",
+    desc: "A lightweight web application that generates QR codes instantly with a simple interface and download functionality.",
     image: project4Img,
     tools: ["HTML5", "CSS3", "JavaScript"],
-    link: "https://github.com/uday-andra/QR-Code-Generator",
+    category: "Web Application",
+    accent: "orange",
+    icon: FaCode,
+    link:
+      "https://github.com/uday-andra/QR-Code-Generator",
   },
+
   {
     id: 5,
     title: "Analytics Dashboard",
-    desc: "Interactive charts, filters, export functionality, and reusable components.",
+    desc: "Interactive analytics dashboard with charts, filters, export functionality, and reusable React components.",
     image: project5Img,
     tools: ["React", "Recharts", "Vite"],
+    category: "Frontend",
+    accent: "pink",
+    icon: FaLayerGroup,
     link: "#",
   },
+
   {
     id: 6,
     title: "Security Scanner UI",
-    desc: "UX demo showing scanning pipeline results and CVE highlights.",
+    desc: "Security-focused interface demonstrating scanning workflows, results visualization, and CVE-related findings.",
     image: project6Img,
-    tools: ["React", "Bootstrap", "Node"],
+    tools: ["React", "Bootstrap", "Node.js"],
+    category: "Security / UI",
+    accent: "green",
+    icon: FaShieldAlt,
     link: "#",
   },
 ];
 
-function ToolBadge({ name }) {
-  return <span className="proj-tool">{name}</span>;
+const INITIAL_VISIBLE_COUNT = 3;
+
+  //  TOOL BADGE
+function ToolBadge({ name, index }) {
+  return (
+    <span
+      className={`project-tool project-tool--${index % 5}`}
+    >
+      {name}
+    </span>
+  );
 }
 
-export default function Projects() {
+  //  PROJECT CARD
+function ProjectCard({ project }) {
+  const ProjectIcon = project.icon;
+
   return (
-    <section id="projects" className="section projects-section">
-      <div className="container">
-        <h2 className="projects-heading">Projects</h2>
+    <article
+      className={`project-card project-card--${project.accent}`}
+      role="listitem"
+    >
+          {/* COLOR GLOW */}
+      <span
+        className="project-card-glow"
+        aria-hidden="true"
+      />
 
-        <div className="projects-card">
-          <div className="projects-grid" role="list">
-            {PROJECTS.map((p) => (
-              <article
-                key={p.id}
-                className="project-tile tile-vertical"
-                role="listitem"
-                tabIndex={0}
-              >
-                {/* IMAGE AT TOP */}
-                <div className="proj-media-vertical">
-                  <img
-                    src={p.image}
-                    alt={`${p.title} screenshot`}
-                    onError={(e) => {
-                      e.currentTarget.style.opacity = 0.2;
-                    }}
-                  />
-                </div>
+          {/* PROJECT VISUAL */}
+      <div className="project-visual">
+        <div className="project-image-frame">
+          <img
+            src={project.image}
+            alt={`${project.title} project preview`}
+            loading="lazy"
+            onError={(event) => {
+              event.currentTarget.style.opacity = "0.2";
+            }}
+          />
 
-                {/* CONTENT BELOW */}
-                <div className="proj-body-vertical">
-                  <h3 className="proj-title">{p.title}</h3>
-                  <p className="proj-desc">{p.desc}</p>
+          <div className="project-image-shade" />
 
-                  {/* TOOLS */}
-                  <div className="proj-tools">
-                    {p.tools.map((t) => (
-                      <ToolBadge key={t} name={t} />
-                    ))}
-                  </div>
+          <div
+            className="project-image-gradient"
+            aria-hidden="true"
+          />
 
-                  {/* BUTTON */}
-                  <div className="proj-actions">
-                    <a
-                      href={p.link}
-                      className="btn proj-btn"
-                      aria-label={`View ${p.title}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      View
-                    </a>
-                  </div>
-                </div>
-              </article>
-            ))}
+          {/* Floating project number */}
+
+          <span className="project-number">
+            {String(project.id).padStart(2, "0")}
+          </span>
+
+          {/* Category */}
+
+          <span className="project-category">
+            <ProjectIcon />
+            {project.category}
+          </span>
+
+          {/* Code symbol */}
+
+          <span className="project-code-mark">
+            {"</>"}
+          </span>
+
+          {/* Decorative 3D dots */}
+
+          <span className="project-floating-dot project-dot-one" />
+          <span className="project-floating-dot project-dot-two" />
+
+          {/* Image frame border */}
+
+          <span className="project-frame-line" />
+        </div>
+      </div>
+
+          {/* CONTENT */}
+      <div className="project-content">
+        {/* Header */}
+
+        <div className="project-title-row">
+          <div className="project-title-block">
+            <span className="project-index-label">
+              PROJECT {String(project.id).padStart(2, "0")}
+            </span>
+
+            <h3>{project.title}</h3>
+          </div>
+
+          <a
+            href={project.link}
+            className="project-github"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`Open ${project.title} repository`}
+            title="Open repository"
+          >
+            <FaGithub aria-hidden="true" />
+
+            <span className="github-tooltip">
+              GitHub
+            </span>
+          </a>
+        </div>
+
+        {/* Description */}
+
+        <p className="project-description">
+          {project.desc}
+        </p>
+
+        {/* Technologies */}
+
+        <div className="project-tools">
+          {project.tools.map((tool, index) => (
+            <ToolBadge
+              key={tool}
+              name={tool}
+              index={index}
+            />
+          ))}
+        </div>
+
+        {/* Footer */}
+
+        <div className="project-footer">
+          <a
+            href={project.link}
+            className="project-view-link"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span>View Project</span>
+
+            <span className="project-view-icon">
+              <FaArrowRight aria-hidden="true" />
+            </span>
+          </a>
+
+          <span className="project-external">
+            <FaExternalLinkAlt aria-hidden="true" />
+          </span>
+        </div>
+      </div>
+    </article>
+  );
+}
+
+//  PROJECTS
+export default function Projects() {
+  const [showAll, setShowAll] = useState(false);
+
+  const visibleProjects = showAll
+    ? PROJECTS
+    : PROJECTS.slice(0, INITIAL_VISIBLE_COUNT);
+
+  const remainingProjects =
+    PROJECTS.length - INITIAL_VISIBLE_COUNT;
+
+  return (
+    <section
+      id="projects"
+      className="section projects-section"
+      aria-labelledby="projects-title"
+    >
+          {/* BACKGROUND */}
+      <div
+        className="projects-background"
+        aria-hidden="true"
+      >
+        <div className="projects-grid-pattern" />
+
+        <span className="projects-bg-orb projects-bg-orb-one" />
+        <span className="projects-bg-orb projects-bg-orb-two" />
+        <span className="projects-bg-orb projects-bg-orb-three" />
+
+        <span className="projects-particle projects-particle-one" />
+        <span className="projects-particle projects-particle-two" />
+        <span className="projects-particle projects-particle-three" />
+      </div>
+
+      <div className="container projects-container">
+            {/* HEADER */}
+        <header className="projects-heading">
+          <div className="projects-heading-top">
+            <div className="projects-heading-label">
+              <span className="projects-kicker">
+                SELECTED WORK
+              </span>
+
+              <span className="projects-heading-line" />
+            </div>
+
+            <span className="projects-count">
+              {String(PROJECTS.length).padStart(2, "0")} PROJECTS
+            </span>
+          </div>
+
+          <h2 id="projects-title">
+            Projects &amp; <span>Applications</span>
+          </h2>
+
+          <p>
+            A selection of applications and development projects
+            built across frontend, backend, full-stack development
+            and security-focused interfaces.
+          </p>
+        </header>
+
+            {/* PROJECT GRID */}
+        <div
+          className={`projects-grid ${
+            showAll ? "projects-grid--expanded" : ""
+          }`}
+          role="list"
+        >
+          {visibleProjects.map((project, index) => (
+            <div
+              key={project.id}
+              className="project-card-wrapper"
+              style={{
+                "--project-delay": `${index * 80}ms`,
+              }}
+            >
+              <ProjectCard project={project} />
+            </div>
+          ))}
+        </div>
+
+            {/* VIEW MORE */}
+        {PROJECTS.length > INITIAL_VISIBLE_COUNT && (
+          <div className="projects-more">
+            <button
+              type="button"
+              className="projects-more-button"
+              onClick={() =>
+                setShowAll((current) => !current)
+              }
+              aria-expanded={showAll}
+            >
+              <span className="projects-more-number">
+                {showAll ? "06" : "03"}
+              </span>
+
+              <span>
+                {showAll
+                  ? "Show Less"
+                  : `View More Projects (${remainingProjects})`}
+              </span>
+
+              <span className="projects-more-icon">
+                <FaChevronDown
+                  className={
+                    showAll
+                      ? "projects-chevron projects-chevron--open"
+                      : "projects-chevron"
+                  }
+                  aria-hidden="true"
+                />
+              </span>
+            </button>
+          </div>
+        )}
+
+            {/* BOTTOM INFORMATION STRIP */}
+        <div className="projects-bottom">
+          <div className="projects-bottom-item projects-bottom-blue">
+            <span>01</span>
+
+            <div>
+              <strong>Full Stack</strong>
+
+              <small>
+                Java · Spring Boot · React
+              </small>
+            </div>
+          </div>
+
+          <div className="projects-bottom-item projects-bottom-violet">
+            <span>02</span>
+
+            <div>
+              <strong>Frontend</strong>
+
+              <small>
+                React · JavaScript · CSS
+              </small>
+            </div>
+          </div>
+
+          <div className="projects-bottom-item projects-bottom-cyan">
+            <span>03</span>
+
+            <div>
+              <strong>Backend</strong>
+
+              <small>
+                Java · REST APIs · MySQL
+              </small>
+            </div>
+          </div>
+
+          <div className="projects-bottom-item projects-bottom-pink">
+            <span>04</span>
+
+            <div>
+              <strong>Development</strong>
+
+              <small>
+                Git · GitHub · Docker
+              </small>
+            </div>
           </div>
         </div>
       </div>

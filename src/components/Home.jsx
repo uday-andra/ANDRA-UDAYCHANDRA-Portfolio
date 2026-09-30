@@ -8,10 +8,9 @@ import Certifications from "./Certifications";
 import ContactForm from "./ContactForm";
 import Header from "./layout/Header";
 import Footer from "./layout/Footer";
-import AnimatedCursor from "./AnimatedCursor";
 
 export default function Home() {
-  const [theme, setTheme] = useState("dark"); // "dark" | "light"
+  const [theme, setTheme] = useState("light"); // "dark" | "light"
 
   // Apply theme as class on <body> or root
   useEffect(() => {
@@ -79,7 +78,6 @@ export default function Home() {
       </main>
 
       <Footer />
-      <AnimatedCursor className="animated-cursor" />
     </div>
   );
 }

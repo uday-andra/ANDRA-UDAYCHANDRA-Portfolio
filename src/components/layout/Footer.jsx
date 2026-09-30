@@ -1,108 +1,373 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   FaLinkedin,
   FaGithub,
   FaEnvelope,
   FaInstagram,
+  FaArrowUp,
+  FaArrowRight,
+  FaCode,
+  FaCircle,
+  FaRocket,
+  FaJava,
+  FaReact,
+  FaServer,
 } from "react-icons/fa";
 
+const NAVIGATION = {
+  Explore: [
+    ["Home", "#hero"],
+    ["About", "#about"],
+    ["Experience", "#experience"],
+    ["Skills", "#skills"],
+  ],
+  Portfolio: [
+    ["Projects", "#projects"],
+    ["Certifications", "#certifications"],
+    ["Contact", "#contact"],
+  ],
+};
+
+const SOCIALS = [
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/andra-udaychandra",
+    icon: FaLinkedin,
+  },
+  {
+    label: "GitHub",
+    href: "https://github.com/uday-andra",
+    icon: FaGithub,
+  },
+  {
+    label: "Instagram",
+    href: "https://instagram.com/_.mr._.cool._._",
+    icon: FaInstagram,
+  },
+  {
+    label: "Email",
+    href: "mailto:udayandra003@gmail.com",
+    icon: FaEnvelope,
+  },
+];
+
+const TECH_STACK = [
+  {
+    label: "Java",
+    icon: FaJava,
+  },
+  {
+    label: "React",
+    icon: FaReact,
+  },
+  {
+    label: "Spring Boot",
+    icon: FaServer,
+  },
+  {
+    label: "JavaScript",
+    icon: FaCode,
+  },
+];
+
 export default function Footer() {
-  const year = new Date().getFullYear();
+  const [isOnline, setIsOnline] = useState(() =>
+    typeof navigator !== "undefined" ? navigator.onLine : true
+  );
+
+  const [currentYear, setCurrentYear] = useState(() =>
+    new Date().getFullYear()
+  );
+
+  useEffect(() => {
+    const handleOnline = () => setIsOnline(true);
+    const handleOffline = () => setIsOnline(false);
+
+    window.addEventListener("online", handleOnline);
+    window.addEventListener("offline", handleOffline);
+
+    return () => {
+      window.removeEventListener("online", handleOnline);
+      window.removeEventListener("offline", handleOffline);
+    };
+  }, []);
+
+  useEffect(() => {
+    setCurrentYear(new Date().getFullYear());
+  }, []);
+
+  const scrollTo = (targetId) => {
+    const target = document.querySelector(targetId);
+
+    if (!target) return;
+
+    target.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  };
+
+  const handleNavClick = (event, targetId) => {
+    event.preventDefault();
+    scrollTo(targetId);
+  };
+
+  const scrollTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
 
   return (
-    <footer id="footer" className="site-footer">
-      <div className="footer-glow" aria-hidden="true" />
+    <footer className="site-footer">
+      <div className="footer-main container">
+        <div className="footer-brand">
+          <div className="footer-brand-top">
+            <span className="footer-brand-dot">
+              <FaCircle aria-hidden="true" />
+            </span>
 
-      <div className="footer-container">
-        {/* Left Section */}
-        <div className="footer-section footer-brand">
-          <h3 className="footer-title">Andra Udaychandra</h3>
-          <p className="footer-role">Full Stack Developer</p>
-          <p className="footer-description">
-            Building fast, scalable web experiences with modern Java &amp; React
-            stacks. Always open to interesting collaborations and roles.
-          </p>
-        </div>
-
-        {/* Middle Section – Quick Links */}
-        <div className="footer-section footer-links-section">
-          <h4 className="footer-heading">Quick Links</h4>
-          <div className="footer-links-grid">
-            <ul className="footer-links">
-              <li><a href="#hero">Home</a></li>
-              <li><a href="#about">About</a></li>
-              <li><a href="#skills">Skills</a></li>
-              <li><a href="#projects">Projects</a></li>
-            </ul>
-            <ul className="footer-links">
-              <li><a href="#experience">Experience</a></li>
-              <li><a href="#certifications">Certificates</a></li>
-              <li><a href="#contact">Contact</a></li>
-              <li><a href="#hero">Back to Top</a></li>
-            </ul>
+            <span className="footer-eyebrow">
+              SOFTWARE DEVELOPER
+            </span>
           </div>
+
+          <h2 className="footer-title">
+            Andra
+            <br />
+            <span>Udaychandra</span>
+          </h2>
+
+          <p className="footer-description">
+            Full Stack Java Developer focused on building
+            reliable, maintainable and modern web applications
+            with Java, Spring Boot, React and contemporary
+            frontend technologies.
+          </p>
+
+          <div className="footer-tech-stack">
+            {TECH_STACK.map((technology) => {
+              const Icon = technology.icon;
+
+              return (
+                <span
+                  className="footer-tech"
+                  key={technology.label}
+                >
+                  <Icon aria-hidden="true" />
+                  {technology.label}
+                </span>
+              );
+            })}
+          </div>
+
+          <a
+            href="mailto:udayandra003@gmail.com"
+            className="footer-email"
+          >
+            <span>Let's build something meaningful</span>
+
+            <FaArrowRight aria-hidden="true" />
+          </a>
         </div>
 
-        {/* Right Section – Contact / Social */}
-        <div className="footer-section footer-contact">
-          <h4 className="footer-heading">Contact Me</h4>
-          <ul className="contact-list">
-            <li>
-              <a href="mailto:udayandra003@gmail.com">
-                <span className="contact-icon">
-                  <FaEnvelope />
-                </span>
-                <span>Email</span>
-              </a>
-            </li>
-
-            <li>
-              <a
-                href="https://www.linkedin.com/in/andra-udaychandra"
-                target="_blank"
-                rel="noreferrer"
+        <div className="footer-navigation">
+          {Object.entries(NAVIGATION).map(
+            ([groupName, links]) => (
+              <div
+                className="footer-column"
+                key={groupName}
               >
-                <span className="contact-icon">
-                  <FaLinkedin />
+                <span className="footer-column-title">
+                  {groupName}
                 </span>
-                <span>LinkedIn</span>
-              </a>
-            </li>
 
-            <li>
-              <a
-                href="https://github.com/uday-andra"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <span className="contact-icon">
-                  <FaGithub />
-                </span>
-                <span>GitHub</span>
-              </a>
-            </li>
+                <nav className="footer-nav">
+                  {links.map(([label, href]) => (
+                    <a
+                      href={href}
+                      key={href}
+                      onClick={(event) =>
+                        handleNavClick(event, href)
+                      }
+                    >
+                      <span>{label}</span>
 
-            <li>
-              <a
-                href="https://instagram.com/_.mr._.cool._._"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <span className="contact-icon">
-                  <FaInstagram />
-                </span>
-                <span>Instagram</span>
-              </a>
-            </li>
-          </ul>
+                      <FaArrowRight
+                        aria-hidden="true"
+                      />
+                    </a>
+                  ))}
+                </nav>
+              </div>
+            )
+          )}
+        </div>
+
+        <div className="footer-connect">
+          <span className="footer-column-title">
+            Connect
+          </span>
+
+          <div className="footer-socials">
+            {SOCIALS.map((social) => {
+              const Icon = social.icon;
+
+              return (
+                <a
+                  key={social.label}
+                  href={social.href}
+                  target={
+                    social.href.startsWith("http")
+                      ? "_blank"
+                      : undefined
+                  }
+                  rel={
+                    social.href.startsWith("http")
+                      ? "noopener noreferrer"
+                      : undefined
+                  }
+                  aria-label={social.label}
+                  className="footer-social-link"
+                >
+                  <span className="footer-social-icon">
+                    <Icon aria-hidden="true" />
+                  </span>
+
+                  <span>{social.label}</span>
+
+                  <FaArrowRight
+                    className="footer-social-arrow"
+                    aria-hidden="true"
+                  />
+                </a>
+              );
+            })}
+          </div>
+
+          <div className="footer-availability">
+            <span className="footer-availability-icon">
+              <FaRocket aria-hidden="true" />
+            </span>
+
+            <div>
+              <span>OPEN TO OPPORTUNITIES</span>
+
+              <strong>
+                Software Development
+              </strong>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div className="footer-bottom">
-        <span className="footer-bottom-line" />
+      <div className="footer-status-wrap container">
+        <div className="footer-status">
+          {/* Portfolio Status */}
+
+          <div className="footer-status-item">
+            <span
+              className={`footer-status-indicator ${
+                isOnline
+                  ? "footer-status-indicator--online"
+                  : "footer-status-indicator--offline"
+              }`}
+            >
+              <FaCircle aria-hidden="true" />
+            </span>
+
+            <div>
+              <span>Status</span>
+
+              <strong>
+                {isOnline
+                  ? "Portfolio Online"
+                  : "Currently Offline"}
+              </strong>
+            </div>
+          </div>
+
+          <span className="footer-status-divider" />
+
+          {/* Current Focus */}
+
+          <div className="footer-status-item">
+            <span className="footer-status-icon">
+              <FaCode aria-hidden="true" />
+            </span>
+
+            <div>
+              <span>Current Focus</span>
+
+              <strong>
+                Full Stack Development
+              </strong>
+            </div>
+          </div>
+
+          <span className="footer-status-divider" />
+
+          {/* Primary Stack */}
+
+          <div className="footer-status-item">
+            <span className="footer-status-icon">
+              <FaJava aria-hidden="true" />
+            </span>
+
+            <div>
+              <span>Primary Stack</span>
+
+              <strong>
+                Java · Spring Boot · React
+              </strong>
+            </div>
+          </div>
+
+          <span className="footer-status-divider" />
+
+          {/* Availability */}
+
+          <div className="footer-status-item">
+            <span className="footer-status-icon">
+              <FaRocket aria-hidden="true" />
+            </span>
+
+            <div>
+              <span>Availability</span>
+
+              <strong>
+                Remote · Hybrid · On-site
+              </strong>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="footer-bottom container">
         <p>
-          © {year} <strong>Andra Udaychandra</strong> — All rights reserved.
+          © {currentYear}{" "}
+          <strong>Andra Udaychandra</strong>. All rights
+          reserved.
         </p>
+
+        <p className="footer-built">
+          Designed &amp; developed with React · JavaScript ·
+          CSS
+        </p>
+
+        <button
+          type="button"
+          className="footer-back-top"
+          onClick={scrollTop}
+          aria-label="Back to top"
+        >
+          <span>Back to top</span>
+
+          <span className="footer-back-top-icon">
+            <FaArrowUp aria-hidden="true" />
+          </span>
+        </button>
       </div>
     </footer>
   );
