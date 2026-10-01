@@ -6,6 +6,7 @@ import project3Img from "../assets/project3.jpg";
 import project4Img from "../assets/project4.jpg";
 import project5Img from "../assets/project5.jpg";
 import project6Img from "../assets/project6.jpg";
+import project7Img from "../assets/project7.jpg";
 
 import {
   FaArrowRight,
@@ -19,18 +20,20 @@ import {
 } from "react-icons/fa";
 
   //  PROJECT DATA
+
 const PROJECTS = [
-  {
+
+    {
     id: 1,
-    title: "Portfolio Website",
-    desc: "Personal portfolio built with React + Vite, responsive layout, and contact form integration with Node.js and MySQL.",
+    title: "Hospital Management System",
+    desc: "A hospital management system with patient registration, appointment scheduling, and medical record management using Java Spring Boot and MySQL.",
     image: project1Img,
     tools: ["React", "JavaScript", "TailwindCSS", "MySQL"],
     category: "Frontend / Full Stack",
     accent: "blue",
     icon: FaCode,
     link:
-      "https://github.com/uday-andra/ANDRA-UDAYCHANDRA-Portfolio",
+      "https://github.com/uday-andra/HealSphere",
   },
 
   {
@@ -64,12 +67,24 @@ const PROJECTS = [
     link:
       "https://github.com/uday-andra/BankApp",
   },
+    {
+    id: 4,
+    title: "Portfolio Website",
+    desc: "Personal portfolio built with React + Vite, responsive layout, and contact form integration with Node.js and MySQL.",
+    image: project4Img,
+    tools: ["React", "JavaScript", "TailwindCSS", "MySQL"],
+    category: "Frontend / Full Stack",
+    accent: "blue",
+    icon: FaCode,
+    link:
+      "https://github.com/uday-andra/ANDRA-UDAYCHANDRA-Portfolio",
+  },
 
   {
-    id: 4,
+    id: 5,
     title: "QR Code Generator",
     desc: "A lightweight web application that generates QR codes instantly with a simple interface and download functionality.",
-    image: project4Img,
+    image: project5Img,
     tools: ["HTML5", "CSS3", "JavaScript"],
     category: "Web Application",
     accent: "orange",
@@ -79,10 +94,10 @@ const PROJECTS = [
   },
 
   {
-    id: 5,
+    id: 6,
     title: "Analytics Dashboard",
     desc: "Interactive analytics dashboard with charts, filters, export functionality, and reusable React components.",
-    image: project5Img,
+    image: project6Img,
     tools: ["React", "Recharts", "Vite"],
     category: "Frontend",
     accent: "pink",
@@ -91,10 +106,10 @@ const PROJECTS = [
   },
 
   {
-    id: 6,
+    id: 7,
     title: "Security Scanner UI",
     desc: "Security-focused interface demonstrating scanning workflows, results visualization, and CVE-related findings.",
-    image: project6Img,
+    image: project7Img,
     tools: ["React", "Bootstrap", "Node.js"],
     category: "Security / UI",
     accent: "green",

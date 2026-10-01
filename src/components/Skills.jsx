@@ -28,7 +28,7 @@ import {
   SiGithub,
 } from "react-icons/si";
 
-  //  SKILL DATA
+
 const GROUPS = [
   {
     key: "frontend",
@@ -226,7 +226,7 @@ const VERSION_CONTROL = [
   },
 ];
 
-  //  TECH ITEM
+
 function TechItem({ Icon, name, color }) {
   return (
     <div
@@ -247,7 +247,7 @@ function TechItem({ Icon, name, color }) {
   );
 }
 
-  //  SKILL GROUP
+
 function SkillGroup({
   group,
   index,
@@ -293,7 +293,7 @@ function SkillGroup({
   );
 }
 
-  //  SKILLS COMPONENT
+
 export default function Skills() {
   return (
     <section
@@ -363,7 +363,7 @@ export default function Skills() {
             </span>
           </div>
         </header>
-            // SKILL GROUPS
+
         <div className="skills-groups">
           {GROUPS.map((group, index) => (
             <SkillGroup

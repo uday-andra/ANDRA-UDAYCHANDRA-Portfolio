@@ -385,7 +385,7 @@ export default function Hero() {
               <div className="hero-mini-stats">
 
                 <div>
-                  <strong>06+</strong>
+                  <strong>07+</strong>
                   <span>Projects</span>
                 </div>
 
